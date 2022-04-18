@@ -1,0 +1,73 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Resources": {
+		"CodeDeployApplication": {
+			"Type": "AWS::CodeDeploy::Application",
+			"Properties": {
+				"ApplicationName": "CodeDeployApplication",
+				"ComputePlatform": "EC2/On-premises"
+			},
+			"Metadata": {
+				"AWS::CloudFormation::Designer": {
+					"id": "c1444911-8591-4faa-89a4-69edfb42a9da"
+				}
+			},
+			"DependsOn": [
+				"CodePipeline"
+			]
+		},
+		"CodeDeploymentGroup": {
+			"Type": "AWS::CodeDeploy::DeploymentGroup",
+			"Properties": {
+				"ApplicationName": {
+					"Ref": "CodeDeployApplication"
+				},
+				"DeploymentGroupName": "CodeDeploymentGroup",
+				"ServiceRoleArn": "https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-1#/roles/codedeployrole",
+				"Tags": [{
+					"Key": "Name",
+					"Value": "CodeDeploy"
+				}],
+				"Deployment": {
+					"Description": "A sample deployment",
+					"IgnoreApplicationStopFailures": "true",
+					"Revision": {
+						"RevisionType": "GitHub",
+						"GitHubLocation": {
+							"CommitId": {
+								"Ref": "cf7c7e99bbf037e4f2cd6965de8bf80af15c48d4"
+							},
+							"Repository": {
+								"Ref": "codedeploy-to-ec2-nodejs"
+							}
+						}
+					}
+				}
+			},
+			"Metadata": {
+				"AWS::CloudFormation::Designer": {
+					"id": "d5a921bf-59d7-4252-a0d1-abf5a853d1fa"
+				}
+			},
+			"DependsOn": [
+				"CodeDeployApplication",
+				"CodePipeline"
+			]
+		},
+		"CodePipeline": {
+			"Type": "AWS::CodePipeline::Pipeline",
+			"Properties": {
+				"Name": "Codepipeline"
+			},
+			"Metadata": {
+				"AWS::CloudFormation::Designer": {
+					"id": "b47cb1dd-e313-4f55-9326-b264a17fde3c"
+				}
+			},
+			"DependsOn": [
+				"CDDG3J86F",
+				"CDA3686Q"
+			]
+		}
+	}
+}
