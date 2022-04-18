@@ -1,0 +1,15 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Creating vpc",
+    "Resources":{
+        "myvpc":{
+            "Type":"AWS::EC2::VPC",
+            "Properties":{
+                "CidrBlock":"10.0.0.0/26",
+                "EnableDnsHostnames":"false",
+                "EnableDnsSupport":"false",
+                "Tags":[ {"Key": "Name" , "Value": "vpc"} ]
+            }
+        }
+    }
+}
