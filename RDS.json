@@ -1,0 +1,44 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "creating mysql database",
+    "Resources": {
+        "MyDB": {
+            "Type": "AWS::RDS::DBInstance",
+            "Properties": {
+                "DBName": "myDB",
+                "Engine": "MySQL",
+                "DBInstanceClass": "db.t2.small",
+                "AllocatedStorage": "8",
+                "MasterUsername": "MyName",
+                "MasterUserPassword": "MyPassword",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "MySQLDatabase"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "c26bac15-a447-4db9-8579-994c6ef2c2cc"
+                }
+            }
+        }
+    },
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "c26bac15-a447-4db9-8579-994c6ef2c2cc": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 60,
+                    "y": 90
+                },
+                "z": 1,
+                "embeds": []
+            }
+        }
+    }
+}
