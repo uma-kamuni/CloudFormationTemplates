@@ -1,6 +1,6 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "Creating EC2 Instance profile with CodeDeploy IAM role",
+    "Description": "Creating EC2-Instance profile with CodeDeploy IAM role",
     "Resources": {
         "EC2CodeDeployRole": {
             "Type": "AWS::IAM::Role",
